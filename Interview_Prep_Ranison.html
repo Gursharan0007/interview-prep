@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gursharan Singh — Interview Prep | Renison Technical Support Consultant</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0c0f;
+    --bg2: #111418;
+    --bg3: #181c22;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --text: #e8eaf0;
+    --muted: #7a8090;
+    --accent: #4fc3a1;
+    --accent2: #6eb5ff;
+    --accent3: #f5a623;
+    --accent4: #ff6b8a;
+    --star-s: #6eb5ff;
+    --star-t: #b794f4;
+    --star-a: #4fc3a1;
+    --star-r: #f5a623;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* HEADER */
+  .hero {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 3rem 2rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: 50%; transform: translateX(-50%);
+    width: 500px; height: 200px;
+    background: radial-gradient(ellipse, rgba(79,195,161,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid rgba(79,195,161,0.3);
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+    color: #fff;
+  }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero-sub {
+    color: var(--muted);
+    font-size: 14px;
+    max-width: 520px;
+    margin: 0 auto 1.5rem;
+  }
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .hero-stat { text-align: center; }
+  .hero-stat-num { font-size: 1.6rem; font-weight: 600; color: #fff; }
+  .hero-stat-lbl { font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace; letter-spacing: 1px; }
+
+  /* NAV */
+  .nav-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,12,15,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-bar::-webkit-scrollbar { display: none; }
+  .nav-btn {
+    padding: 14px 20px;
+    font-size: 13px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    color: var(--muted);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .nav-btn:hover { color: var(--text); }
+  .nav-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* MAIN */
+  .main { max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .section-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-header h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 0.3rem;
+  }
+  .section-header p { color: var(--muted); font-size: 14px; }
+
+  /* Q CARDS */
+  .q-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .q-card:hover { border-color: var(--border2); }
+  .q-card.open { border-color: rgba(79,195,161,0.25); }
+
+  .q-header {
+    padding: 18px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .q-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    min-width: 28px;
+    margin-top: 2px;
+  }
+  .q-content { flex: 1; }
+  .q-badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 10px;
+    border-radius: 20px;
+    margin-bottom: 7px;
+  }
+  .badge-intro { background: rgba(79,195,161,0.12); color: var(--accent); border: 1px solid rgba(79,195,161,0.2); }
+  .badge-company { background: rgba(110,181,255,0.12); color: var(--accent2); border: 1px solid rgba(110,181,255,0.2); }
+  .badge-behavioural { background: rgba(183,148,244,0.12); color: #b794f4; border: 1px solid rgba(183,148,244,0.2); }
+  .badge-technical { background: rgba(245,166,35,0.12); color: var(--accent3); border: 1px solid rgba(245,166,35,0.2); }
+  .badge-situational { background: rgba(255,107,138,0.12); color: var(--accent4); border: 1px solid rgba(255,107,138,0.2); }
+  .badge-culture { background: rgba(79,195,161,0.12); color: var(--accent); border: 1px solid rgba(79,195,161,0.2); }
+
+  .q-text {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.45;
+  }
+  .q-toggle {
+    width: 28px; height: 28px;
+    border: 1px solid var(--border2);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    color: var(--muted);
+    font-size: 12px;
+    transition: all 0.2s;
+    margin-top: 2px;
+  }
+  .q-card.open .q-toggle {
+    background: rgba(79,195,161,0.1);
+    border-color: rgba(79,195,161,0.3);
+    color: var(--accent);
+    transform: rotate(45deg);
+  }
+
+  .q-body {
+    padding: 0 20px 0 62px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s;
+  }
+  .q-body.open {
+    max-height: 2000px;
+    padding-bottom: 20px;
+  }
+
+  /* STAR */
+  .star-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 14px; }
+  .star-row { display: grid; grid-template-columns: 100px 1fr; gap: 12px; align-items: start; }
+  .star-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 0;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .star-label::before {
+    content: '';
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .star-s { color: var(--star-s); }
+  .star-s::before { background: var(--star-s); }
+  .star-t { color: var(--star-t); }
+  .star-t::before { background: var(--star-t); }
+  .star-a { color: var(--star-a); }
+  .star-a::before { background: var(--star-a); }
+  .star-r { color: var(--star-r); }
+  .star-r::before { background: var(--star-r); }
+
+  .star-text {
+    font-size: 14px;
+    color: rgba(232,234,240,0.85);
+    line-height: 1.65;
+    padding-top: 3px;
+  }
+
+  .direct-answer {
+    font-size: 14px;
+    color: rgba(232,234,240,0.85);
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+
+  .tip-box {
+    background: rgba(79,195,161,0.06);
+    border: 1px solid rgba(79,195,161,0.15);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: rgba(79,195,161,0.9);
+    margin-top: 14px;
+  }
+  .tip-box strong { color: var(--accent); font-weight: 600; }
+
+  .warn-box {
+    background: rgba(245,166,35,0.06);
+    border: 1px solid rgba(245,166,35,0.15);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: rgba(245,166,35,0.9);
+    margin-top: 14px;
+  }
+
+  /* INTRO SPECIAL */
+  .intro-script {
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 16px;
+    font-size: 14.5px;
+    line-height: 1.8;
+    color: var(--text);
+    font-style: italic;
+    position: relative;
+  }
+  .intro-script::before {
+    content: '"';
+    font-family: 'DM Serif Display', serif;
+    font-size: 4rem;
+    color: rgba(79,195,161,0.15);
+    position: absolute;
+    top: -10px; left: 14px;
+    line-height: 1;
+  }
+
+  /* COMPANY FACTS */
+  .fact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .fact-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .fact-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1.5px; color: var(--muted); text-transform: uppercase; margin-bottom: 4px; }
+  .fact-val { font-size: 14px; color: var(--text); font-weight: 500; }
+
+  /* ASK QUESTIONS */
+  .ask-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 10px;
+  }
+  .ask-q { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 8px; }
+  .ask-why { font-size: 13px; color: var(--muted); }
+
+  /* CHEATSHEET */
+  .cheat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 600px) { .cheat-grid { grid-template-columns: 1fr; } }
+  .cheat-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .cheat-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .cheat-list { list-style: none; }
+  .cheat-list li {
+    font-size: 13px;
+    color: rgba(232,234,240,0.8);
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .cheat-list li:last-child { border-bottom: none; }
+  .cheat-list li::before { content: '→'; color: var(--accent); flex-shrink: 0; font-size: 12px; margin-top: 2px; }
+
+  hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+
+  @media print {
+    .nav-bar { display: none; }
+    .section { display: block !important; page-break-inside: avoid; }
+    .q-body { max-height: none !important; padding-bottom: 20px !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-tag">Interview Preparation Guide</div>
+  <h1>Gursharan Singh<br><em>Renison University College</em></h1>
+  <p class="hero-sub">Technical Support Consultant — Full Interview Prep with STAR Answers</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-num">40+</div><div class="hero-stat-lbl">Questions</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">7</div><div class="hero-stat-lbl">Categories</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">STAR</div><div class="hero-stat-lbl">Method</div></div>
+  </div>
+</div>
+
+<div class="nav-bar">
+  <button class="nav-btn active" onclick="show('intro')">Intro & About You</button>
+  <button class="nav-btn" onclick="show('company')">About Renison</button>
+  <button class="nav-btn" onclick="show('behavioural')">Behavioural</button>
+  <button class="nav-btn" onclick="show('technical')">Technical</button>
+  <button class="nav-btn" onclick="show('situational')">Situational</button>
+  <button class="nav-btn" onclick="show('culture')">Culture & Fit</button>
+  <button class="nav-btn" onclick="show('ask')">Ask Them</button>
+  <button class="nav-btn" onclick="show('cheat')">Cheat Sheet</button>
+</div>
+
+<div class="main">
+
+  <!-- ======================== INTRO ======================== -->
+  <div class="section active" id="sec-intro">
+    <div class="section-header">
+      <h2>Introduction & About You</h2>
+      <p>Your opening impression — practise these until they feel completely natural</p>
+    </div>
+
+    <!-- Q1 -->
+    <div class="q-card" id="c0">
+      <div class="q-header" onclick="toggle('c0')">
+        <span class="q-num">01</span>
+        <div class="q-content">
+          <span class="q-badge badge-intro">Introduction</span>
+          <div class="q-text">Tell me about yourself. / Walk me through your background.</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Your scripted 90-second opening. Memorise this — deliver it naturally, not robotically.</p>
+        <div class="intro-script">
+          I'm a Computer Science student at Conestoga College in Waterloo, and IT support is where my technical skills and my people skills come together most naturally.<br><br>
+          I've had two real-world IT support roles. Most recently at Mgadz in Mississauga, where I handled frontline helpdesk — troubleshooting hardware, software, connectivity issues, managing a ticket queue, and onboarding new users. Before that, I worked as an IT Support Assistant at Delhi Public School in India, where I maintained classroom technology, set up and troubleshot AV systems, and supported staff and faculty with everything from network printers to projectors.<br><br>
+          What I enjoy most about this work isn't just solving the technical puzzle — it's the moment when someone who was frustrated and stuck is back up and running. That's what keeps me motivated.<br><br>
+          I'm looking for a role where I can contribute meaningfully from day one and grow in a hands-on environment. When I saw this role at Renison, the combination of helpdesk, AV support, and working closely with a small community was exactly what I was looking for.
+        </div>
+        <div class="tip-box"><strong>Tip:</strong> Keep it to 90 seconds. End by connecting to why THIS job — don't just summarise your CV.</div>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="q-card" id="c1">
+      <div class="q-header" onclick="toggle('c1')">
+        <span class="q-num">02</span>
+        <div class="q-content">
+          <span class="q-badge badge-intro">Introduction</span>
+          <div class="q-text">Why do you want this specific role?</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <p class="direct-answer">
+          Three things drew me to this role specifically. First, the breadth — helpdesk, AV, hardware deployment, even cabling. In a lot of IT jobs you're siloed into one function. Here I'd touch everything, which means faster growth. Second, the community scale — Renison being tight-knit means I'd actually know the people I support, which I find more meaningful than anonymous ticket resolution. And third, the UWaterloo affiliation means I'd be collaborating with a larger enterprise IT ecosystem while still having real ownership and impact in a smaller setting. That combination is rare.
+        </p>
+        <div class="tip-box"><strong>Tip:</strong> Specific is always better than generic. They can tell when candidates haven't researched the organisation.</div>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="q-card" id="c2">
+      <div class="q-header" onclick="toggle('c2')">
+        <span class="q-num">03</span>
+        <div class="q-content">
+          <span class="q-badge badge-intro">Introduction</span>
+          <div class="q-text">What are your greatest strengths?</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <p class="direct-answer">
+          My top three for this role: <br><br>
+          <strong>Structured troubleshooting.</strong> I don't guess — I work through issues systematically, which means I resolve things faster and more reliably. At Mgadz I rarely had to escalate tickets because I'd exhaust the logical steps first.<br><br>
+          <strong>Communication with non-technical users.</strong> I've worked with teachers, admin staff, faculty — people who don't know what a DHCP lease is and don't need to. I translate what I'm doing into plain language, which builds trust and reduces repeat calls.<br><br>
+          <strong>Adaptability.</strong> Both my IT roles had very different environments — a corporate setting at Mgadz and a school setting in India. I picked up workflows quickly, asked good questions, and was effective within weeks each time.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="q-card" id="c3">
+      <div class="q-header" onclick="toggle('c3')">
+        <span class="q-num">04</span>
+        <div class="q-content">
+          <span class="q-badge badge-intro">Introduction</span>
+          <div class="q-text">What is your greatest weakness?</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <p class="direct-answer">
+          I sometimes spend more time than I should trying to solve a problem independently before asking for help — I like to fully exhaust my own troubleshooting before escalating. In the past that's occasionally delayed resolution. I've learned to set a mental time limit: if I haven't made meaningful progress within 30 minutes on something unfamiliar, I loop in a colleague or escalate. That habit has made me faster overall and I've learned more from those collaborative moments than I would have if I'd kept grinding alone.
+        </p>
+        <div class="tip-box"><strong>Tip:</strong> A real weakness + a real fix. Never say "I work too hard" — interviewers see through it immediately.</div>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="q-card" id="c4">
+      <div class="q-header" onclick="toggle('c4')">
+        <span class="q-num">05</span>
+        <div class="q-content">
+          <span class="q-badge badge-intro">Introduction</span>
+          <div class="q-text">Where do you see yourself in 3–5 years?</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <p class="direct-answer">
+          In 3–5 years I see myself in a more senior IT support or systems administration role — someone who not only resolves issues but helps design reliable infrastructure and mentors newer team members. I'm particularly interested in developing deeper expertise in networking and enterprise systems. This role at Renison is an ideal foundation — the breadth of hands-on work will accelerate my learning significantly, and the UWaterloo IT collaboration gives me exposure to how larger institutional infrastructure operates.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="q-card" id="c5">
+      <div class="q-header" onclick="toggle('c5')">
+        <span class="q-num">06</span>
+        <div class="q-content">
+          <span class="q-badge badge-intro">Introduction</span>
+          <div class="q-text">Why should we hire you over other candidates?</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <p class="direct-answer">
+          Most candidates at this level will have one of these things — I have all three: real helpdesk experience, real AV and classroom tech experience, and I'm actively studying Computer Science which keeps my technical foundation current. My time at Delhi Public School maps almost directly to what this role requires — classroom projectors, network printers, staff support. And because I'm local in Waterloo, you get someone who's invested in being here long-term, not someone treating this as a temporary stop. I'm also genuinely enthusiastic about the Renison environment — small community, meaningful impact — which means I'll be motivated beyond just doing the minimum.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================== COMPANY ======================== -->
+  <div class="section" id="sec-company">
+    <div class="section-header">
+      <h2>About Renison & Company Questions</h2>
+      <p>Know these facts cold — they show you genuinely researched the organisation</p>
+    </div>
+
+    <div class="fact-grid">
+      <div class="fact-card"><div class="fact-label">Organisation</div><div class="fact-val">Renison University College</div></div>
+      <div class="fact-card"><div class="fact-label">Affiliation</div><div class="fact-val">Federated with University of Waterloo</div></div>
+      <div class="fact-card"><div class="fact-label">Type</div><div class="fact-val">Small liberal arts college, community-oriented</div></div>
+      <div class="fact-card"><div class="fact-label">IT Team Size</div><div class="fact-val">Small team (Manager + IT Specialist + this role)</div></div>
+      <div class="fact-card"><div class="fact-label">Role reports to</div><div class="fact-val">Manager, Information Systems & Technology</div></div>
+      <div class="fact-card"><div class="fact-label">Hours</div><div class="fact-val">35 hrs/week, full onsite, flexible hours</div></div>
+    </div>
+
+    <div class="q-card" id="d0">
+      <div class="q-header" onclick="toggle('d0')">
+        <span class="q-num">07</span>
+        <div class="q-content">
+          <span class="q-badge badge-company">Company</span>
+          <div class="q-text">What do you know about Renison University College?</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <p class="direct-answer">
+          Renison is a federated university college affiliated with the University of Waterloo. It's smaller and more community-oriented than the main campus — known for a tight-knit, supportive environment for staff, faculty, and students. Because of the UWaterloo federation, the IT team works collaboratively with UWaterloo's broader IT department, which means I'd have access to enterprise-level resources and expertise while still working in a close community setting. The role sits within a small IT team reporting to the Manager of Information Systems and Technology, which means each person carries meaningful responsibility and wears multiple hats. That's exactly the kind of environment I learn fastest in.
+        </p>
+        <div class="tip-box"><strong>Tip:</strong> Visit renison.uwaterloo.ca before your interview to pick up one or two specific details — a programme name, a value statement — to weave in naturally.</div>
+      </div>
+    </div>
+
+    <div class="q-card" id="d1">
+      <div class="q-header" onclick="toggle('d1')">
+        <span class="q-num">08</span>
+        <div class="q-content">
+          <span class="q-badge badge-company">Company</span>
+          <div class="q-text">How does IT support in a post-secondary institution differ from corporate IT?</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <p class="direct-answer">
+          In a post-secondary environment, the user base is extremely diverse — faculty with decades of experience, admin staff, new students — all with very different technical comfort levels. You can't assume knowledge, and your communication has to adapt constantly. There's also much heavier reliance on AV and classroom technology, and peak loads tend to follow the academic calendar — term start is hectic, reading week is calm. Corporate IT tends to be more standardised — same hardware, same workflows. Education IT requires more flexibility and patience. My experience at Delhi Public School gave me direct exposure to exactly this kind of environment.
+        </p>
+      </div>
+    </div>
+
+    <div class="q-card" id="d2">
+      <div class="q-header" onclick="toggle('d2')">
+        <span class="q-num">09</span>
+        <div class="q-content">
+          <span class="q-badge badge-company">Company</span>
+          <div class="q-text">What do you know about this role's responsibilities?</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <p class="direct-answer">
+          From the job description, the role covers: triaging and resolving helpdesk requests alongside the IT Specialist; hardware and software installation and training for staff and faculty; network printer and copier troubleshooting; maintaining and troubleshooting classroom AV technology; installing and removing network and AV cabling; setting up and tearing down portable audio equipment; organising storage and managing e-waste. It's a genuinely hands-on, varied role — much of the work is away from a desk, which suits me well. The physical side doesn't concern me at all.
+        </p>
+        <div class="tip-box"><strong>Tip:</strong> Mentioning the physical demands proactively shows you read the full description carefully — that stands out.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================== BEHAVIOURAL ======================== -->
+  <div class="section" id="sec-behavioural">
+    <div class="section-header">
+      <h2>Behavioural Questions</h2>
+      <p>All answered using the STAR method — draw on your real experience</p>
+    </div>
+
+    <div class="q-card" id="b0">
+      <div class="q-header" onclick="toggle('b0')">
+        <span class="q-num">10</span>
+        <div class="q-content">
+          <span class="q-badge badge-behavioural">Behavioural</span>
+          <div class="q-text">Tell me about a time you handled multiple technical requests at once under pressure.</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <div class="star-grid">
+          <div class="star-row"><span class="star-label star-s">Situation</span><span class="star-text">At Mgadz during a busy period, I had several open support tickets simultaneously — a hardware fault, a software installation request, and a network connectivity issue across different users, all marked urgent.</span></div>
+          <div class="star-row"><span class="star-label star-t">Task</span><span class="star-text">I needed to triage all requests effectively, resolve the most impactful issues first, and keep every user informed so no one felt ignored.</span></div>
+          <div class="star-row"><span class="star-label star-a">Action</span><span class="star-text">I categorised tickets by impact — anything blocking someone from working entirely went to the top of the queue. I messaged each user with a realistic ETA so they knew they hadn't been forgotten. I started the longest running process (Windows update/software install) and switched to diagnosing the connectivity issue while that ran in the background. I documented each resolution as I went.</span></div>
+          <div class="star-row"><span class="star-label star-r">Result</span><span class="star-text">All tickets resolved within the same shift. No escalations, no complaints. A couple of users specifically mentioned good communication in their feedback.</span></div>
+        </div>
+        <div class="tip-box"><strong>Why this matters:</strong> The Renison job description explicitly mentions "multiple priorities and frequent interruptions" at peak times — this answer speaks directly to that.</div>
+      </div>
+    </div>
+
+    <div class="q-card" id="b1">
+      <div class="q-header" onclick="toggle('b1')">
+        <span class="q-num">11</span>
+        <div class="q-content">
+          <span class="q-badge badge-behavioural">Behavioural</span>
+          <div class="q-text">Tell me about a time you helped a non-technical person with a tech problem.</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <div class="star-grid">
+          <div class="star-row"><span class="star-label star-s">Situation</span><span class="star-text">At Delhi Public School, a teacher came to me mid-morning frustrated because the classroom projector kept cutting out during lessons. She wasn't sure if it was the laptop, the cable, or the projector itself.</span></div>
+          <div class="star-row"><span class="star-label star-t">Task</span><span class="star-text">I needed to diagnose the issue quickly with minimal disruption to the school day, and also make sure the teacher could handle minor recurrences herself going forward.</span></div>
+          <div class="star-row"><span class="star-label star-a">Action</span><span class="star-text">I walked through each component methodically — checked the cable seating, toggled the display settings on the laptop, inspected the projector's input selection — and explained in plain language what I was checking and why as I went. The HDMI cable was slightly loose. After fixing it, I showed her exactly how to re-seat it herself and labelled the input button on the projector with a small sticker so she could switch inputs without calling me.</span></div>
+          <div class="star-row"><span class="star-label star-r">Result</span><span class="star-text">Fixed in under 10 minutes. The teacher felt confident to self-manage minor AV issues and repeat calls for the same problem dropped significantly.</span></div>
+        </div>
+        <div class="tip-box"><strong>Why this matters:</strong> Classroom AV is a core accountability in this role. This story is one of your strongest — use it whenever AV or end-user training comes up.</div>
+      </div>
+    </div>
+
+    <div class="q-card" id="b2">
+      <div class="q-header" onclick="toggle('b2')">
+        <span class="q-num">12</span>
+        <div class="q-content">
+          <span class="q-badge badge-behavioural">Behavioural</span>
+          <div class="q-text">Describe a time you had to troubleshoot a problem without clear information upfront.</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <div class="star-grid">
+          <div class="star-row"><span class="star-label star-s">Situation</span><span class="star-text">At Mgadz, a user reported their computer was "running really slow" — a vague complaint that could mean a dozen different things.</span></div>
+          <div class="star-row"><span class="star-label star-t">Task</span><span class="star-text">I had to narrow down the cause systematically rather than assuming, since guessing incorrectly wastes time and erodes user trust.</span></div>
+          <div class="star-row"><span class="star-label star-a">Action</span><span class="star-text">I asked targeted questions first — when did this start, any recent software installs, does it happen at specific times or constantly. Then I checked Task Manager for CPU and RAM spikes, ran a disk health check, and reviewed startup programs. Found that a scheduled antivirus scan and four startup applications were all competing for resources on boot every morning.</span></div>
+          <div class="star-row"><span class="star-label star-r">Result</span><span class="star-text">Disabled unnecessary startup programs and rescheduled the AV scan to run at midnight. Boot times improved noticeably — the user commented the next day that it felt like a new machine.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" id="b3">
+      <div class="q-header" onclick="toggle('b3')">
+        <span class="q-num">13</span>
+        <div class="q-content">
+          <span class="q-badge badge-behavioural">Behavioural</span>
+          <div class="q-text">Tell me about a time you went above and beyond for a user.</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <div class="star-grid">
+          <div class="star-row"><span class="star-label star-s">Situation</span><span class="star-text">At Delhi Public School, a faculty member needed a full AV setup for a special presentation the following morning — projector, laptop connection, and audio — and came to me late in the afternoon.</span></div>
+          <div class="star-row"><span class="star-label star-t">Task</span><span class="star-text">This wasn't a routine helpdesk ticket. The components hadn't been used together in that configuration before and I needed to make sure everything worked reliably for an important event.</span></div>
+          <div class="star-row"><span class="star-label star-a">Action</span><span class="star-text">I stayed after my usual hours to set everything up, tested audio levels at different volumes, confirmed the laptop display output was clean, and left a simple one-page reference card on the lectern with the three steps to start the system — power order, input selection, volume setting.</span></div>
+          <div class="star-row"><span class="star-label star-r">Result</span><span class="star-text">The presentation ran without any issues. The teacher thanked me personally and mentioned it to my supervisor. It also became the template for how we set up that room going forward.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" id="b4">
+      <div class="q-header" onclick="toggle('b4')">
+        <span class="q-num">14</span>
+        <div class="q-content">
+          <span class="q-badge badge-behavioural">Behavioural</span>
+          <div class="q-text">Tell me about a time you had to learn something new quickly on the job.</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <div class="star-grid">
+          <div class="star-row"><span class="star-label star-s">Situation</span><span class="star-text">When I started at Mgadz, I was introduced to their ITSM ticketing system — one I hadn't used before — and expected to be managing a ticket queue from week one.</span></div>
+          <div class="star-row"><span class="star-label star-t">Task</span><span class="star-text">I needed to get up to speed on the system quickly enough to be independently effective without slowing down the team.</span></div>
+          <div class="star-row"><span class="star-label star-a">Action</span><span class="star-text">I spent the first two days going through the system's documentation and watching how my colleague processed tickets before touching anything myself. I wrote a quick personal reference guide for the workflows I'd use most often. By the end of the first week I was handling tickets independently.</span></div>
+          <div class="star-row"><span class="star-label star-r">Result</span><span class="star-text">No major errors in ticket processing, and my personal reference guide was later shared with a new team member who joined after me.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" id="b5">
+      <div class="q-header" onclick="toggle('b5')">
+        <span class="q-num">15</span>
+        <div class="q-content">
+          <span class="q-badge badge-behavioural">Behavioural</span>
+          <div class="q-text">Describe a time you worked well as part of a small team.</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <div class="star-grid">
+          <div class="star-row"><span class="star-label star-s">Situation</span><span class="star-text">At Delhi Public School, the IT function was just two people — myself and a senior technician — responsible for the entire school's technology needs.</span></div>
+          <div class="star-row"><span class="star-label star-t">Task</span><span class="star-text">We had to coordinate closely so that coverage was consistent and neither of us created extra work for the other.</span></div>
+          <div class="star-row"><span class="star-label star-a">Action</span><span class="star-text">We had a brief morning check-in every day to flag pending issues and divide the day's work based on urgency and skill fit. I kept thorough notes on every issue I handled so my colleague could pick up anything mid-way if I was pulled elsewhere. When I encountered something beyond my level, I flagged it immediately rather than sitting on it.</span></div>
+          <div class="star-row"><span class="star-label star-r">Result</span><span class="star-text">We maintained consistent uptime across the school with very few issues falling through the cracks. The communication habit also helped me know when to escalate versus solve independently — a skill I use to this day.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================== TECHNICAL ======================== -->
+  <div class="section" id="sec-technical">
+    <div class="section-header">
+      <h2>Technical Questions</h2>
+      <p>Show structured thinking — interviewers want to see your process, not just the answer</p>
+    </div>
+
+    <div class="q-card" id="t0">
+      <div class="q-header" onclick="toggle('t0')">
+        <span class="q-num">16</span>
+        <div class="q-content">
+          <span class="q-badge badge-technical">Technical</span>
+          <div class="q-text">Walk me through troubleshooting a network printer that staff can't connect to.</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <p class="direct-answer">
+          I follow a layered approach — physical first, then network, then software.<br><br>
+          <strong>Step 1 — Physical check:</strong> Is the printer powered on, showing "Ready" on the panel, and connected to the network port or Wi-Fi? Check indicator lights.<br><br>
+          <strong>Step 2 — Network reachability:</strong> Find the printer's IP address from its control panel display. Ping it from the affected workstation. If ping fails — network issue. Check if the IP changed (DHCP lease expired and reassigned). If so, update the printer port on the workstation or assign a static IP to the printer.<br><br>
+          <strong>Step 3 — If ping succeeds but printing fails:</strong> Check the print queue for stuck jobs, clear it, reinstall or update the driver, confirm the correct port is configured.<br><br>
+          <strong>Step 4 — Isolation test:</strong> Try printing from a different workstation. If other machines work, the issue is user-specific. If nothing works, the issue is on the printer or server side.<br><br>
+          I've done this regularly at both Mgadz and Delhi Public School.
+        </p>
+        <div class="tip-box"><strong>Why this matters:</strong> "Troubleshoot network printers and copiers" is listed verbatim in the key accountabilities. Know this cold.</div>
+      </div>
+    </div>
+
+    <div class="q-card" id="t1">
+      <div class="q-header" onclick="toggle('t1')">
+        <span class="q-num">17</span>
+        <div class="q-content">
+          <span class="q-badge badge-technical">Technical</span>
+          <div class="q-text">A classroom projector isn't displaying anything. How do you troubleshoot it?</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <p class="direct-answer">
+          <strong>Step 1 — Basic checks:</strong> Is the projector on? Wait 30–60 seconds for lamp warmup. Is the correct input source selected (HDMI 1 vs VGA vs wireless)?<br><br>
+          <strong>Step 2 — Cable and connection:</strong> Inspect the cable connection at both ends. Swap in a known-good cable if available.<br><br>
+          <strong>Step 3 — Laptop display settings:</strong> Press Windows + P to bring up display mode — toggle between Duplicate, Extend, and Projector Only. Sometimes the output is set to an inactive mode.<br><br>
+          <strong>Step 4 — Resolution check:</strong> If the projector shows a signal but image is garbled or blank, check if the laptop resolution exceeds what the projector supports. Drop it to 1080p or lower.<br><br>
+          <strong>Step 5 — Isolation:</strong> Test the projector with a different laptop. If it works, the issue is the original laptop's output settings or port. If still no signal, the projector itself may need service.<br><br>
+          I handled this scenario regularly at Delhi Public School.
+        </p>
+        <div class="tip-box"><strong>Why this matters:</strong> Classroom AV maintenance is a key accountability. AV troubleshooting will definitely come up — this structured answer shows you're methodical.</div>
+      </div>
+    </div>
+
+    <div class="q-card" id="t2">
+      <div class="q-header" onclick="toggle('t2')">
+        <span class="q-num">18</span>
+        <div class="q-content">
+          <span class="q-badge badge-technical">Technical</span>
+          <div class="q-text">What's the difference between DNS and DHCP? When would each cause problems?</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <p class="direct-answer">
+          <strong>DHCP</strong> (Dynamic Host Configuration Protocol) automatically assigns IP addresses to devices when they join a network. If DHCP fails, a device gets no IP address — or falls back to a self-assigned 169.254.x.x address (APIPA), which is a dead giveaway. The device won't be able to communicate on the network at all.<br><br>
+          <strong>DNS</strong> (Domain Name System) translates domain names — like renison.uwaterloo.ca — into IP addresses so systems know where to route traffic. If DNS fails, the device may have a valid IP and can even ping IP addresses directly, but websites and named servers won't load. The classic symptom: "the internet is broken" but the network connection shows connected.<br><br>
+          <strong>Quick diagnostic rule:</strong> Can't get on the network at all → suspect DHCP. Connected but nothing loads by name → suspect DNS.
+        </p>
+      </div>
+    </div>
+
+    <div class="q-card" id="t3">
+      <div class="q-header" onclick="toggle('t3')">
+        <span class="q-num">19</span>
+        <div class="q-content">
+          <span class="q-badge badge-technical">Technical</span>
+          <div class="q-text">How do you set up a new workstation for a staff member?</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <p class="direct-answer">
+          I use a consistent checklist approach to make sure nothing gets missed:<br><br>
+          1. Unbox and complete physical setup — desk position, cable management, peripherals connected<br>
+          2. Power on and immediately run Windows Update — this takes time so I start it early<br>
+          3. Install required software based on the user's role — Microsoft 365, role-specific apps, any department tools<br>
+          4. Configure user account, verify login credentials work, set up email in Outlook<br>
+          5. Map network drives and shared folders<br>
+          6. Add and test network printer access<br>
+          7. Test all peripherals — keyboard, mouse, monitors, any webcam or headset<br>
+          8. Walk the user through their setup, answer questions, show them basics if needed<br>
+          9. Document what was installed and any configuration notes in the ticketing system<br><br>
+          A smooth onboarding sets the tone. If IT works flawlessly on day one, users trust you for everything that follows. I handled this end-to-end at Mgadz.
+        </p>
+      </div>
+    </div>
+
+    <div class="q-card" id="t4">
+      <div class="q-header" onclick="toggle('t4')">
+        <span class="q-num">20</span>
+        <div class="q-content">
+          <span class="q-badge badge-technical">Technical</span>
+          <div class="q-text">A user says they can't connect to Wi-Fi. Walk me through your process.</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <p class="direct-answer">
+          <strong>Step 1 — Scope the problem:</strong> Is it just this user/device, or are others affected too? If multiple users are down, it's an infrastructure issue — escalate immediately.<br><br>
+          <strong>Step 2 — Quick checks on the device:</strong> Is Wi-Fi enabled? Is Airplane Mode off? Is the correct SSID selected?<br><br>
+          <strong>Step 3 — Forget and reconnect:</strong> Forget the network and reconnect fresh with the correct credentials. Sometimes cached bad credentials block connection.<br><br>
+          <strong>Step 4 — IP address check:</strong> Run ipconfig. If they have a 169.254.x.x address, the device connected to the AP but didn't get a DHCP lease — possible DHCP issue or AP overload.<br><br>
+          <strong>Step 5 — Driver check:</strong> Update or reinstall the wireless network adapter driver.<br><br>
+          <strong>Step 6 — Test with another network:</strong> Try a phone hotspot. If it connects fine, the issue is specific to the corporate network (SSID, VLAN, credentials). If it won't connect to anything, hardware fault suspected.<br><br>
+          <strong>Step 7 — Document and escalate if needed:</strong> If it's a network infrastructure issue, flag it to the appropriate team.
+        </p>
+      </div>
+    </div>
+
+    <div class="q-card" id="t5">
+      <div class="q-header" onclick="toggle('t5')">
+        <span class="q-num">21</span>
+        <div class="q-content">
+          <span class="q-badge badge-technical">Technical</span>
+          <div class="q-text">What's the difference between a virus, malware, and ransomware? How do you handle a suspected infection?</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <p class="direct-answer">
+          <strong>Malware</strong> is the umbrella term — any malicious software. <strong>Viruses</strong> are a type of malware that self-replicate by attaching to legitimate files. <strong>Ransomware</strong> encrypts a user's files and demands payment for the decryption key — it's currently one of the most damaging threats to organisations.<br><br>
+          <strong>If I suspect an infection:</strong><br>
+          1. Isolate the device immediately — disconnect from the network (unplug ethernet, disable Wi-Fi) to prevent spread<br>
+          2. Do not shut it down unless instructed — some malware destroys evidence on shutdown<br>
+          3. Report to my manager immediately — this is not a solo fix<br>
+          4. Preserve the state for investigation — avoid using the machine<br>
+          5. Run a full scan with the organisation's endpoint security tool from a known-clean source<br>
+          6. For ransomware specifically — check if backups are intact and unaffected before anything else<br><br>
+          The most important thing is speed of isolation and communication — this is never something to handle quietly.
+        </p>
+      </div>
+    </div>
+
+    <div class="q-card" id="t6">
+      <div class="q-header" onclick="toggle('t6')">
+        <span class="q-num">22</span>
+        <div class="q-content">
+          <span class="q-badge badge-technical">Technical</span>
+          <div class="q-text">What experience do you have with audio/visual equipment setup?</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <p class="direct-answer">
+          At Delhi Public School I handled AV setup and maintenance as a regular part of my role — this included projectors and displays in classrooms, laptop-to-projector connections via HDMI and VGA, audio systems for presentations and assemblies, and troubleshooting equipment mid-use when teachers had issues during class. I learned to set up rooms in advance for events, test everything before the user is in the room, and leave simple reference instructions for staff who needed to operate equipment independently. I also set up and tore down portable audio equipment for school events. The core skills — cable management, input/output troubleshooting, display calibration, audio level setting — are directly applicable to what this role requires.
+        </p>
+        <div class="tip-box"><strong>Why this matters:</strong> AV setup and teardown, including portable audio, is explicitly listed in the job accountabilities. This is one of your strongest differentiators.</div>
+      </div>
+    </div>
+
+    <div class="q-card" id="t7">
+      <div class="q-header" onclick="toggle('t7')">
+        <span class="q-num">23</span>
+        <div class="q-content">
+          <span class="q-badge badge-technical">Technical</span>
+          <div class="q-text">What operating systems are you comfortable supporting?</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <p class="direct-answer">
+          My primary experience is with <strong>Windows 10 and 11</strong> — that's been the dominant OS in both my support roles, covering everything from user account management to Group Policy basics to registry-level troubleshooting. I have foundational knowledge of <strong>Windows Server</strong> concepts — AD, file shares, basic administration — from my coursework. I'm comfortable supporting <strong>macOS</strong> at a basic level — common settings, display/printer configuration, M365 on Mac — and I've helped users with mobile devices on both iOS and Android for email setup and connectivity. Windows is where I'm strongest, but I'm a quick study on any platform.
+        </p>
+      </div>
+    </div>
+
+    <div class="q-card" id="t8">
+      <div class="q-header" onclick="toggle('t8')">
+        <span class="q-num">24</span>
+        <div class="q-content">
+          <span class="q-badge badge-technical">Technical</span>
+          <div class="q-text">What is a VPN and when would a user need one?</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <p class="direct-answer">
+          A VPN (Virtual Private Network) creates an encrypted tunnel between a user's device and the organisation's network, making it appear as though the user is physically connected to the office network even when working remotely. Users typically need it to access resources that are restricted to the internal network — shared drives, internal applications, printers — when working from off-campus. Common helpdesk issues with VPNs include: the client not connecting (wrong credentials, expired certificate, blocked firewall port), slow speeds (server overload or split tunnelling misconfiguration), or resources not being accessible even when connected (routing or DNS issue on the VPN side). I've explained VPN use and basic troubleshooting to non-technical staff at Mgadz.
+        </p>
+      </div>
+    </div>
+
+    <div class="q-card" id="t9">
+      <div class="q-header" onclick="toggle('t9')">
+        <span class="q-num">25</span>
+        <div class="q-content">
+          <span class="q-badge badge-technical">Technical</span>
+          <div class="q-text">How do you document a resolved support ticket?</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <p class="direct-answer">
+          A good ticket record should let anyone else on the team understand exactly what happened without having to track down the original user or technician. I document: the issue as reported by the user, the steps I took to diagnose it (including things I checked and ruled out), the root cause identified, the exact resolution steps I performed, any follow-up needed, and time spent. I avoid vague entries like "fixed laptop" — that's useless for anyone who inherits a recurring issue. At Mgadz I maintained this standard consistently. Good documentation isn't overhead — it's how a small IT team scales their knowledge.
+        </p>
+      </div>
+    </div>
+
+    <div class="q-card" id="t10">
+      <div class="q-header" onclick="toggle('t10')">
+        <span class="q-num">26</span>
+        <div class="q-content">
+          <span class="q-badge badge-technical">Technical</span>
+          <div class="q-text">What is the OSI model? Can you walk through a few relevant layers?</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <p class="direct-answer">
+          The OSI model is a conceptual framework for understanding how data moves through a network — it has 7 layers, each responsible for a specific function.<br><br>
+          For helpdesk work, the most practically useful layers are:<br><br>
+          <strong>Layer 1 — Physical:</strong> The actual cables, ports, and hardware. If nothing works, start here — is the cable plugged in? Is the port lit up?<br><br>
+          <strong>Layer 2 — Data Link:</strong> MAC addresses, switches. Relevant when diagnosing switch port issues or duplicate MAC conflicts.<br><br>
+          <strong>Layer 3 — Network:</strong> IP addresses, routing. This is where DHCP and IP configuration troubleshooting lives — can you ping the gateway?<br><br>
+          <strong>Layer 7 — Application:</strong> The software the user sees. Browser issues, app crashes, email client problems live here.<br><br>
+          In practice, I troubleshoot bottom-up — confirm physical, then network, then application — which aligns with how the OSI model is intended to be used.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================== SITUATIONAL ======================== -->
+  <div class="section" id="sec-situational">
+    <div class="section-header">
+      <h2>Situational Questions</h2>
+      <p>Hypothetical scenarios — show your judgment, not just your knowledge</p>
+    </div>
+
+    <div class="q-card" id="s0">
+      <div class="q-header" onclick="toggle('s0')">
+        <span class="q-num">27</span>
+        <div class="q-content">
+          <span class="q-badge badge-situational">Situational</span>
+          <div class="q-text">A faculty member's computer crashes mid-lecture. What do you do?</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <p class="direct-answer">
+          My first priority is minimising disruption to the class — not performing a full diagnostic.<br><br>
+          I'd get to the room quickly and enter as unobtrusively as possible. Immediate triage: try a quick restart — most crashes recover. If the machine doesn't come back within 60 seconds, I switch to Plan B — if there's a spare laptop nearby, I'd bring it and get the faculty member connected to the projector as fast as possible so the class can resume. I would not attempt deep diagnostics with students waiting in the room.<br><br>
+          After class, I'd investigate the root cause properly, document the incident, and either remediate the issue or replace the machine if it's a hardware fault. I'd also follow up with the faculty member to confirm everything was working before their next class.<br><br>
+          The key principle: restore function first, investigate second.
+        </p>
+        <div class="tip-box"><strong>Why this matters:</strong> Renison is described as patient and community-oriented. They want someone who is calm, discreet, and faculty-aware — not someone who creates more disruption than the problem itself.</div>
+      </div>
+    </div>
+
+    <div class="q-card" id="s1">
+      <div class="q-header" onclick="toggle('s1')">
+        <span class="q-num">28</span>
+        <div class="q-content">
+          <span class="q-badge badge-situational">Situational</span>
+          <div class="q-text">It's the first week of term. You have 10 workstations to deploy and 5 urgent tickets open. How do you handle it?</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <p class="direct-answer">
+          First, I triage the tickets — anything actively blocking someone from doing their job is more urgent than a deployment. I communicate realistic timelines to all ticket requesters so no one is left wondering.<br><br>
+          For the workstations, I batch the setup process efficiently: start Windows Updates on all 10 machines simultaneously (they run in the background), then work through tickets while machines are updating. This parallel approach lets me make progress on both streams at once rather than treating them sequentially.<br><br>
+          I'd keep my manager informed of my current load and expected completion times. If the volume is genuinely unmanageable, I flag it early and ask whether anything can be reprioritised or whether additional support is available — I'd rather surface that early than let things slip and apologise later.<br><br>
+          The job description specifically mentions peak periods at term start and flexible hours. I'm fully comfortable with that, and I'd treat it as a normal part of the role rather than an exception.
+        </p>
+      </div>
+    </div>
+
+    <div class="q-card" id="s2">
+      <div class="q-header" onclick="toggle('s2')">
+        <span class="q-num">29</span>
+        <div class="q-content">
+          <span class="q-badge badge-situational">Situational</span>
+          <div class="q-text">You encounter a problem you've never seen before and can't solve it in a reasonable time. What do you do?</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <p class="direct-answer">
+          I don't pretend to know things I don't — that's how small issues become big ones.<br><br>
+          First, I document everything precisely: exact error messages, what the user was doing, any recent changes to the system, steps I've already tried. Then I check internal documentation or knowledge base, then search reputable technical resources. I set a time limit — if I haven't made meaningful progress in 30 minutes on something genuinely unfamiliar, I escalate.<br><br>
+          In this role, that means consulting my manager or, where appropriate, the UWaterloo IT team that Renison collaborates with. Throughout, I keep the user updated — "I'm investigating this, here's where I am, here's my next step" — so they don't feel forgotten even if the resolution takes time.<br><br>
+          Being transparent about limitations while showing clear effort builds more trust than guessing and making it worse.
+        </p>
+      </div>
+    </div>
+
+    <div class="q-card" id="s3">
+      <div class="q-header" onclick="toggle('s3')">
+        <span class="q-num">30</span>
+        <div class="q-content">
+          <span class="q-badge badge-situational">Situational</span>
+          <div class="q-text">A staff member is very frustrated and rude when reporting a tech issue. How do you respond?</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <p class="direct-answer">
+          I don't take it personally — when someone is short-tempered about a tech issue, they're almost always frustrated at the situation, not at me. Technology failing at the wrong moment is genuinely stressful.<br><br>
+          My first move is to acknowledge the impact rather than jump to the technical problem: "I understand this is disrupting your work — let's get it sorted." That simple acknowledgment usually de-escalates the tone before I've even touched the computer.<br><br>
+          Then I focus entirely on solving the problem as efficiently as possible and follow up at the end to make sure they're satisfied. I don't bring up their tone — it's rarely helpful and usually unnecessary once the problem is fixed.<br><br>
+          If someone is being genuinely abusive — not just frustrated — I'd calmly and professionally note that I'm here to help and ask that we keep the conversation professional. In my experience at Delhi Public School with high-stress faculty, calm consistency is the most effective response.
+        </p>
+      </div>
+    </div>
+
+    <div class="q-card" id="s4">
+      <div class="q-header" onclick="toggle('s4')">
+        <span class="q-num">31</span>
+        <div class="q-content">
+          <span class="q-badge badge-situational">Situational</span>
+          <div class="q-text">You notice a recurring issue that's generating multiple tickets. What do you do?</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <p class="direct-answer">
+          Resolving individual tickets is reactive — recognising a pattern and addressing the root cause is where real value comes from.<br><br>
+          If I notice the same issue appearing multiple times, I'd document the pattern — which users, which systems, how frequently, what the common factors are. Then I'd bring it to my manager's attention with that data and propose a fix or investigation: whether that's a configuration change, a software update, a hardware refresh, or a user training initiative.<br><br>
+          For example, if five people reported that the same classroom projector kept losing signal, I'd flag it as a potential hardware or cable fault rather than just resolving each ticket individually. Proactive fixes save everyone time — the users, the team, and me.
+        </p>
+      </div>
+    </div>
+
+    <div class="q-card" id="s5">
+      <div class="q-header" onclick="toggle('s5')">
+        <span class="q-num">32</span>
+        <div class="q-content">
+          <span class="q-badge badge-situational">Situational</span>
+          <div class="q-text">You're asked to do something outside your technical comfort zone (e.g. network cabling). What's your approach?</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <p class="direct-answer">
+          I'm comfortable saying "I haven't done exactly this before" while still being willing to tackle it with the right support. My approach is: ask what training or documentation is available, observe before I act on unfamiliar tasks, and be upfront with my manager about my experience level so they can gauge how much oversight is appropriate.<br><br>
+          The job description mentions that training is provided, which I appreciate — it signals that Renison isn't expecting someone to walk in knowing everything. I'm a structured learner: I study the task, ask good questions, practice in low-stakes conditions first, and take on more independence as I build confidence. Network cabling, e-waste management, storage organisation — none of these intimidate me, they're just skills to acquire.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================== CULTURE ======================== -->
+  <div class="section" id="sec-culture">
+    <div class="section-header">
+      <h2>Culture & Fit Questions</h2>
+      <p>Renison is small and values personality — let yours come through</p>
+    </div>
+
+    <div class="q-card" id="cu0">
+      <div class="q-header" onclick="toggle('cu0')">
+        <span class="q-num">33</span>
+        <div class="q-content">
+          <span class="q-badge badge-culture">Culture & Fit</span>
+          <div class="q-text">How do you handle working in a small, close-knit team?</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <p class="direct-answer">
+          Small teams are where I've done my best work. At Delhi Public School the IT function was two people covering the entire school — that meant close communication, shared accountability, and needing to trust each other completely. What I appreciate about small teams is that there's nowhere to hide, but also nowhere to be invisible. Every contribution matters and is visible.<br><br>
+          I also find that small teams build real working relationships rather than transactional interactions. I genuinely enjoy knowing the people I support — it makes the work more meaningful and makes users more likely to come to you proactively rather than struggling in silence. That's the dynamic Renison describes, and it's exactly what I'm looking for.
+        </p>
+      </div>
+    </div>
+
+    <div class="q-card" id="cu1">
+      <div class="q-header" onclick="toggle('cu1')">
+        <span class="q-num">34</span>
+        <div class="q-content">
+          <span class="q-badge badge-culture">Culture & Fit</span>
+          <div class="q-text">How do you handle confidential information?</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <p class="direct-answer">
+          IT support puts you in a position of significant trust — you have access to people's machines, files, emails, and sometimes sensitive institutional data. I take that seriously. In practice: I don't access more of a system than I need to resolve the issue at hand, I don't discuss user data or issues with other staff, and I follow whatever data handling and privacy policies the organisation has in place.<br><br>
+          At both my previous roles, maintaining that discretion was part of being trusted to work independently. People stop calling IT if they don't trust that their information is handled professionally. That reputation takes time to build and very little time to lose.
+        </p>
+        <div class="tip-box"><strong>Why this matters:</strong> The job description explicitly requires "strict confidentiality." This question will likely come up.</div>
+      </div>
+    </div>
+
+    <div class="q-card" id="cu2">
+      <div class="q-header" onclick="toggle('cu2')">
+        <span class="q-num">35</span>
+        <div class="q-content">
+          <span class="q-badge badge-culture">Culture & Fit</span>
+          <div class="q-text">Are you comfortable with the physical demands of this role?</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <p class="direct-answer">
+          Completely. I actually prefer a role where I'm moving around over one where I'm stuck at a desk all day. Setting up workstations, running cable, moving equipment, organising storage — that variety makes the work more engaging. The job description is clear that most of the work is away from a desk, and that's a feature for me, not a downside. I'm physically capable of lifting and moving equipment and I understand that peak periods may require flexibility in hours — I'm on board with that.
+        </p>
+        <div class="tip-box"><strong>Tip:</strong> Mention this proactively — they'll appreciate that you read the full description and aren't going to be surprised by it on day one.</div>
+      </div>
+    </div>
+
+    <div class="q-card" id="cu3">
+      <div class="q-header" onclick="toggle('cu3')">
+        <span class="q-num">36</span>
+        <div class="q-content">
+          <span class="q-badge badge-culture">Culture & Fit</span>
+          <div class="q-text">How do you stay current with technology?</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <p class="direct-answer">
+          A few ways. My Computer Science coursework at Conestoga gives me a structured foundation — networking, systems, software development — that gets updated regularly. Beyond that, I build personal projects: right now I'm working on a Flutter app with Firebase integration, which keeps my practical skills active outside of class. I follow tech support communities and read documentation when I encounter something new — I'd rather understand the "why" behind a fix than just memorise the steps. And honestly, each new issue at work teaches me something I couldn't have gotten from a textbook. I see every tricky ticket as a learning opportunity.
+        </p>
+      </div>
+    </div>
+
+    <div class="q-card" id="cu4">
+      <div class="q-header" onclick="toggle('cu4')">
+        <span class="q-num">37</span>
+        <div class="q-content">
+          <span class="q-badge badge-culture">Culture & Fit</span>
+          <div class="q-text">Do you have any experience with AutoCAD or similar software? (Listed as an asset)</div>
+        </div>
+        <div class="q-toggle">+</div>
+      </div>
+      <div class="q-body">
+        <p class="direct-answer">
+          I don't have direct AutoCAD experience, but I understand it's listed as an asset rather than a requirement, which tells me it's used occasionally — likely for diagramming network or AV cable layouts. I'm comfortable learning new software tools and have picked up unfamiliar systems quickly in past roles. If AutoCAD is used for cable mapping or floor plan documentation, I'd be motivated to get up to speed on it — having accurate documentation of physical infrastructure is something I understand the value of. I'd be happy to explore free training resources on my own time to close that gap.
+        </p>
+        <div class="tip-box"><strong>Tip:</strong> Honesty about gaps + enthusiasm to close them is always better than bluffing. They specifically said "asset" — this won't disqualify you.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================== ASK THEM ======================== -->
+  <div class="section" id="sec-ask">
+    <div class="section-header">
+      <h2>Questions to Ask the Interviewer</h2>
+      <p>Asking smart questions signals genuine interest — pick 3–4 from this list</p>
+    </div>
+
+    <div class="ask-card">
+      <div class="ask-q">What does a typical first month look like for someone in this role?</div>
+      <div class="ask-why">Shows you're thinking seriously about onboarding and want to hit the ground running, not just get the offer.</div>
+    </div>
+    <div class="ask-card">
+      <div class="ask-q">What are the most common recurring issues the team deals with day-to-day?</div>
+      <div class="ask-why">Practical and role-specific. Signals you're already mentally preparing for the actual work.</div>
+    </div>
+    <div class="ask-card">
+      <div class="ask-q">How does the Renison IT team collaborate with UWaterloo's broader IT department?</div>
+      <div class="ask-why">Shows you read the job description carefully and are thinking about the bigger ecosystem you'd operate within.</div>
+    </div>
+    <div class="ask-card">
+      <div class="ask-q">What does success look like in this role after 6 months?</div>
+      <div class="ask-why">Signals you're thinking long-term and care about performing well, not just landing the position.</div>
+    </div>
+    <div class="ask-card">
+      <div class="ask-q">How is the IT team currently structured and how does this role interact with the IT Specialist day-to-day?</div>
+      <div class="ask-why">Helps you understand the working dynamic and shows you're a team-oriented thinker.</div>
+    </div>
+    <div class="ask-card">
+      <div class="ask-q">Are there opportunities for skill development or training — for example, on tools like AutoCAD or new AV systems?</div>
+      <div class="ask-why">Shows growth mindset and acknowledges the learning curve honestly — interviewers respect that.</div>
+    </div>
+    <div class="ask-card">
+      <div class="ask-q">What's the biggest challenge the IT team is currently facing?</div>
+      <div class="ask-why">A bold question that shows confidence and genuine curiosity. Great for understanding what you'd actually be walking into.</div>
+    </div>
+  </div>
+
+  <!-- ======================== CHEAT SHEET ======================== -->
+  <div class="section" id="sec-cheat">
+    <div class="section-header">
+      <h2>Quick Cheat Sheet</h2>
+      <p>Skim this the morning of your interview</p>
+    </div>
+
+    <div class="cheat-grid">
+      <div class="cheat-card">
+        <div class="cheat-title">Your best stories — use these</div>
+        <ul class="cheat-list">
+          <li>Delhi projector fix → AV competence + user training</li>
+          <li>Mgadz multi-ticket triage → prioritisation under pressure</li>
+          <li>DPS AV event setup after hours → going above and beyond</li>
+          <li>Mgadz slow laptop → structured troubleshooting</li>
+          <li>DPS 2-person team → small team collaboration</li>
+        </ul>
+      </div>
+      <div class="cheat-card">
+        <div class="cheat-title">Your exact matches to this job</div>
+        <ul class="cheat-list">
+          <li>Helpdesk ticket queue → Mgadz experience</li>
+          <li>Classroom AV → Delhi Public School</li>
+          <li>Network printer troubleshooting → both roles</li>
+          <li>Staff onboarding → Mgadz workstation setup</li>
+          <li>Small team, big ownership → both roles</li>
+        </ul>
+      </div>
+      <div class="cheat-card">
+        <div class="cheat-title">Key Renison facts to mention</div>
+        <ul class="cheat-list">
+          <li>Federated with University of Waterloo</li>
+          <li>Small, tight-knit community culture</li>
+          <li>IT collaborates with UWaterloo IT team</li>
+          <li>Role is full-time, fully onsite</li>
+          <li>Training is provided — learning is expected</li>
+        </ul>
+      </div>
+      <div class="cheat-card">
+        <div class="cheat-title">Things to say naturally</div>
+        <ul class="cheat-list">
+          <li>"I prefer to work through this systematically..."</li>
+          <li>"I've handled this before at Delhi Public School..."</li>
+          <li>"I'd keep the user updated throughout..."</li>
+          <li>"First I'd isolate whether it's user-specific..."</li>
+          <li>"I'd flag it to my manager early rather than late..."</li>
+        </ul>
+      </div>
+      <div class="cheat-card">
+        <div class="cheat-title">Gaps to address confidently</div>
+        <ul class="cheat-list">
+          <li>AutoCAD → "asset not requirement, will learn"</li>
+          <li>Windows Server depth → "foundational from coursework"</li>
+          <li>macOS → "comfortable at support level"</li>
+          <li>Physical cabling → "willing, training provided"</li>
+        </ul>
+      </div>
+      <div class="cheat-card">
+        <div class="cheat-title">Tone to project</div>
+        <ul class="cheat-list">
+          <li>Calm — never panicked or overwhelmed-sounding</li>
+          <li>Curious — genuinely interested in the role</li>
+          <li>Reliable — someone they can trust to own things</li>
+          <li>Community-minded — you care about the people</li>
+          <li>Honest — acknowledge gaps, show willingness to learn</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tip-box" style="margin-top:1.5rem;">
+      <strong>Final tip:</strong> Renison explicitly says they are "very patient and understanding" and that "training is provided." They are not looking for someone perfect — they are looking for someone reliable, personable, and coachable. Your combination of real AV experience, helpdesk experience, and local availability makes you a genuinely strong candidate. Walk in confident.
+    </div>
+  </div>
+
+</div>
+
+<script>
+function show(tab) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec-' + tab).classList.add('active');
+  event.currentTarget.classList.add('active');
+  window.scrollTo({ top: document.querySelector('.nav-bar').offsetTop - 10, behavior: 'smooth' });
+}
+
+function toggle(id) {
+  const card = document.getElementById(id);
+  const body = card.querySelector('.q-body');
+  const isOpen = card.classList.contains('open');
+  card.classList.toggle('open', !isOpen);
+  body.classList.toggle('open', !isOpen);
+}
+</script>
+</body>
+</html>
